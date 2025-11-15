@@ -15,7 +15,8 @@ on:
     paths:
       - 'src/**'
       - '.github/workflows/build.yml'
-
+  workflow_dispatch:
+  
 jobs:
   build-linux:
     strategy:
