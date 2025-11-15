@@ -38,6 +38,28 @@ jobs:
             bin/*.bin
             bin/*.py
             bin/*.pl
+            
+  build-linux-aarch:
+    strategy:
+      fail-fast: false
+    name: Build Linux-aarch
+    runs-on: ubuntu-22.04-arm64
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build
+        run: make
+      - name: Collect scripts into bin
+        run: |
+          cp src/*.py bin/
+          cp src/*.pl bin/
+      - name: Generate artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: hashcat-utils-linux
+          path: |
+            bin/*.bin
+            bin/*.py
+            bin/*.pl
 
   build-macos:
     strategy:
